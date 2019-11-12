@@ -6,7 +6,7 @@ from django.conf import settings
 from django.utils.cache import patch_vary_headers
 
 from subdomains.utils import get_domain
-
+from django.utils.deprecation import MiddlewareMixin
 
 logger = logging.getLogger(__name__)
 lower = operator.methodcaller('lower')
@@ -14,7 +14,7 @@ lower = operator.methodcaller('lower')
 UNSET = object()
 
 
-class SubdomainMiddleware(object):
+class SubdomainMiddleware(MiddlewareMixin):
     """
     A middleware class that adds a ``subdomain`` attribute to the current request.
     """
